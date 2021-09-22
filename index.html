@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title></title>
+	</head>
+	<body>
+		<script>
+			let persons =
+			{
+				'moussa':
+				{
+					name:'moussa',
+					job: 'développeur',
+					technologies: ['html', 'css', 'javascript'],
+					cost:600,
+					experience: 5 // 35 jours
+				},
+
+				'khalid':
+				{
+					name:'khalid',
+					job: 'développeur',
+					technologies: ['php', 'nodejs', 'java'],
+					cost:800,
+					experience: 8 // 20 jours
+				},
+
+				'Maha':
+				{
+					name:'Maha',
+					job: 'développeur',
+					technologies: ['php', 'angular', 'java', 'javascript'],
+					cost:500,
+					experience: 2 // 50 jours
+				}
+			}
+
+			let getBestCandidate = function (technology) {
+			let developers = [];
+			let bestCandidateCost = 0;
+			let bestCandidate = null;
+
+			Object.keys(persons).forEach(id => {
+			let numberOfDays = 0;
+
+			if (persons[id].technologies.includes(technology))
+			{
+				developers.push(persons[id]);
+
+				switch (persons[id].experience) 
+				{
+					case 2 :
+					numberOfDays = 50;
+					break;
+
+					case 5 :
+					numberOfDays = 35;
+					break;
+
+					case 8 :
+					numberOfDays = 20;
+					break;
+
+					default :
+					console.error('Wrong experience');
+				}
+
+				persons[id].totalCost = numberOfDays * persons[id].cost;
+			}
+			})
+
+			developers.forEach((developer, iteration) => {
+			
+			if(iteration === 0)
+			{
+				bestCandidateCost = developers[0].totalCost;
+				bestCandidate = developer;
+			}
+
+			if(developers.totalCost < bestCandidateCost)
+			{
+				bestCandidateCost = bestCandidateCost[iteration].totalCost * candidateExp[iteration].experience;
+				bestCandidate = developer;
+			}
+			})
+
+			console.log (bestCandidate);
+			}
+			getBestCandidate('javascript');
+
+		</script>
+		</body>
+</html>
